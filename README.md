@@ -1,24 +1,36 @@
 # wait-for
 
-Docker utility to wait for a container to be available.
-
-## wait-for-postgres
+Docker utility to wait for a database container to be available.
 
 ### Use
 
-You can use wait-for-postgres this way:
+You can use wait-for binary for wait a MySQL database:
 
 ```sh
-$ ./wait-for-postgres
+./wait-for --dbtype mysql \
+           --host localhost \
+           --port 3306 \
+           --user root \
+           --password mysql \
+           --database mysql \
+           --maxAttempts 100
 ```
 
-or in a more completed form:
+And a PostgreSQL database:
 
 ```sh
-$ ./wait-for-postgres --host localhost --port 5432 --user postgres --password postgres --database postgres --seconds 10 --maxAttempts 3
+./wait-for --dbtype postgres \
+           --host localhost \
+           --port 5432 \
+           --user test \
+           --database test \
+           --password test \
+           --maxAttempts 100
 ```
 
 ### Parameters
+
+**--dbtype**: Set the database type. The default value is "postgres".
 
 **--host**: Set the target database host. The default value is "localhost".
 
@@ -34,4 +46,6 @@ $ ./wait-for-postgres --host localhost --port 5432 --user postgres --password po
 
 **--maxAttempts**: Set the max attempts quantity. The default value is "3".
 
+## Licensing
 
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)

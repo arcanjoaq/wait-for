@@ -13,3 +13,6 @@
 
 vendor
 *.lock
+
+# Binary generated
+wait-for
