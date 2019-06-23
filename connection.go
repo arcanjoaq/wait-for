@@ -1,9 +1,9 @@
 package main
 
-import ( 
-	"fmt" 
-	"time"
+import (
+	"fmt"
 	"log"
+	"time"
 )
 
 // DbConnection Interface for all Database Connections
@@ -13,14 +13,14 @@ type DbConnection interface {
 
 func connectTo(dbtype string, host string, port int, user string, password string, database string, maxAttempts int, seconds int) (bool, error) {
 	t, err := getDbConnectionByType(dbtype)
-	if (err != nil) {
+	if err != nil {
 		return false, err
 	}
 	connected := false
 	attempt := 1
 	for attempt <= maxAttempts && !connected {
 		connected = t.connect(host, port, user, password, database)
-		if (!connected) {
+		if !connected {
 			log.Printf("Attempt %d. Waiting for %d seconds...", attempt, seconds)
 			time.Sleep(time.Duration(seconds) * time.Second)
 		} else {
@@ -34,7 +34,8 @@ func connectTo(dbtype string, host string, port int, user string, password strin
 func getDbConnectionByType(dbtype string) (DbConnection, error) {
 	if dbtype == "postgres" {
 		return PostgreSQLConnection{}, nil
+	} else if dbtype == "mysql" {
+		return MySQLConnection{}, nil
 	}
 	return nil, fmt.Errorf("Invalid dbtype: %s", dbtype)
 }
- 
