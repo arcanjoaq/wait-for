@@ -8,7 +8,7 @@ Here is an example of wait-for installation in a Dockerfile:
 
 ```dockerfile
 ENV WAIT_FOR_VERSION=v0.0.2
-RUN wget "https://github.com/ArcanjoQueiroz/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for"
+RUN wget "https://github.com/ArcanjoQueiroz/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for" && chmod u+x wait-for
   ```
 
 
