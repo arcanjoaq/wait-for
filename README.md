@@ -1,10 +1,22 @@
 # wait-for
 
-Docker utility to wait for a database container to be available.
+This is a Docker utility to wait for a database container to be available. Currently the wait-for binary supports **PostgreSQL 11** and **MySQL 8.0.16** databases.
+
+### Installing
+
+Here is an example of wait-for installation in a Dockerfile:
+
+```dockerfile
+ENV WAIT_FOR_VERSION=v0.0.2
+RUN wget "https://github.com/ArcanjoQueiroz/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for"
+  ```
+
 
 ### Use
 
-You can use wait-for binary for wait a MySQL database:
+Basically, the option **--dbtype** determines the target database. Here are some examples of wait-for:
+
+#### MySQL
 
 ```sh
 ./wait-for --dbtype mysql \
@@ -16,7 +28,7 @@ You can use wait-for binary for wait a MySQL database:
            --maxAttempts 100
 ```
 
-And a PostgreSQL database:
+#### PostgreSQL
 
 ```sh
 ./wait-for --dbtype postgres \
@@ -28,7 +40,7 @@ And a PostgreSQL database:
            --maxAttempts 100
 ```
 
-### Parameters
+### Options
 
 **--dbtype**: Set the database type. The default value is "postgres".
 
