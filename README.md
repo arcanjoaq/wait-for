@@ -12,7 +12,7 @@ RUN wget "https://github.com/ArcanjoQueiroz/wait-for/releases/download/${WAIT_FO
   ```
 
 
-### Use
+### Usage
 
 Basically, the option **--dbtype** determines the target database. Here are some examples of wait-for:
 
