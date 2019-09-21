@@ -12,7 +12,7 @@ import (
 type PostgreSQLConnection struct{}
 
 func (s PostgreSQLConnection) connect(host string, port int, user string, password string, database string) bool {
-	dbinfo := fmt.Sprintf("host=%s port=%d user=%s dbname=%s sslmode=disable", host, port, user, database)
+	dbinfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, database)
 	db, _ := sql.Open("postgres", dbinfo)
 	err := db.Ping()
 	defer db.Close()
