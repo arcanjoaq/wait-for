@@ -6,19 +6,18 @@ import (
 )
 
 func main() {
-	host := flag.String("host", "localhost", "Database host")
-	port := flag.Int("port", 5432, "Database port")
-	dbtype := flag.String("dbtype", "postgres", "Database type")
-	user := flag.String("user", "postgres", "Database user")
-	password := flag.String("password", "postgres", "Database password")
-	database := flag.String("database", "postgres", "Database name")
-
+	host := flag.String("host", "localhost", "host")
+	port := flag.Int("port", 5432, "Resource port. Examples: 5432 for PostgreSQL, 3306 for MySQL, 5672 for RabbitMQ or 27017 for MongoDB")
+	resourceType := flag.String("type", "postgres", "Resource type. Examples: postgres, mysql, rabbitmq, mongodb")
+	user := flag.String("user", "postgres", "user")
+	password := flag.String("password", "postgres", "password")
+	name := flag.String("name", "postgres", "Resource name. It is the database name for PostgreSQL, MySQL or MongoDB and Virtual Host for RabbitMQ")
 	maxAttempts := flag.Int("maxAttempts", 3, "Maximum attempts")
-	seconds := flag.Int("seconds", 10, "Seconds to wait for Database")
+	seconds := flag.Int("seconds", 10, "Seconds to wait for Resource")
 
 	flag.Parse()
 
-	connected, err := connectTo(*dbtype, *host, *port, *user, *password, *database, *maxAttempts, *seconds)
+	connected, err := connectTo(*resourceType, *host, *port, *user, *password, *name, *maxAttempts, *seconds)
 	if err != nil {
 		panic(err)
 	}
