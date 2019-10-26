@@ -6,36 +6,40 @@ import (
 	"time"
 )
 
-// DbConnection Interface for all Database Connections
-type DbConnection interface {
-	connect(host string, port int, user string, password string, database string) bool
+// Connection Interface
+type Connection interface {
+	connect(host string, port int, user string, password string, name string) bool
 }
 
-func connectTo(dbtype string, host string, port int, user string, password string, database string, maxAttempts int, seconds int) (bool, error) {
-	t, err := getDbConnectionByType(dbtype)
+func connectTo(resourceType string, host string, port int, user string, password string, name string, maxAttempts int, seconds int) (bool, error) {
+	t, err := getResourceByType(resourceType)
 	if err != nil {
 		return false, err
 	}
 	connected := false
 	attempt := 1
 	for attempt <= maxAttempts && !connected {
-		connected = t.connect(host, port, user, password, database)
+		connected = t.connect(host, port, user, password, name)
 		if !connected {
 			log.Printf("Attempt %d. Waiting for %d seconds...", attempt, seconds)
 			time.Sleep(time.Duration(seconds) * time.Second)
 		} else {
-			log.Println("Connected to the database")
+			log.Println("Connected to the resource")
 		}
 		attempt++
 	}
 	return connected, nil
 }
 
-func getDbConnectionByType(dbtype string) (DbConnection, error) {
-	if dbtype == "postgres" {
+func getResourceByType(resourceType string) (Connection, error) {
+	if resourceType == "postgres" {
 		return PostgreSQLConnection{}, nil
-	} else if dbtype == "mysql" {
+	} else if resourceType == "mysql" {
 		return MySQLConnection{}, nil
+	} else if resourceType == "rabbitmq" {
+		return RabbitMQConnection{}, nil
+	} else if resourceType == "mongodb" {
+		return MongoDBConnection{}, nil
 	}
-	return nil, fmt.Errorf("Invalid dbtype: %s", dbtype)
+	return nil, fmt.Errorf("Invalid resource type: %s", resourceType)
 }
