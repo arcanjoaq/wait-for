@@ -1,0 +1,35 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:11-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  schema:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flyway-postgres
+    command: >
+      bash -c "wait-for --type postgres \
+        --host postgres \
+        --port 5432 \
+        --user test \
+        --password test \
+        --name test \
+        --seconds 2 \
+        --maxAttempts 20 && \
+        flyway \
+          -url=jdbc:postgresql://postgres:5432/test \
+          -schemas=test \
+          -user=test \
+          -password=test migrate"
+    volumes:
+      - ./migrations:/flyway/sql
+      - ./drivers:/flyway/drivers
+    depends_on:
+      - postgres
+
