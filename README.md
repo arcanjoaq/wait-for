@@ -1,6 +1,6 @@
 # wait-for
 
-[![Build Status](https://travis-ci.com/ArcanjoQueiroz/wait-for.svg?branch=master)](https://travis-ci.com/ArcanjoQueiroz/wait-for)
+[![Build Status](https://travis-ci.com/arcanjoaq/wait-for.svg?branch=master)](https://travis-ci.com/arcanjoaq/wait-for)
 
 This is a Docker utility to wait for a database container to be available. Currently the wait-for binary supports **PostgreSQL 11**, **MySQL 8.0.16**, **MongoDB 3.4.19+** databases and **RabbitMQ 3.7+** message broker.
 
