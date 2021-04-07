@@ -15,7 +15,7 @@ func (s MySQLConnection) connect(host string, port int, user string, password st
 	dbinfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", user, password, host, port, database)
 	db, _ := sql.Open("mysql", dbinfo)
 	if db != nil {
-	err := db.Ping()
+		err := db.Ping()
 		defer db.Close()
 		if err != nil {
 			log.Printf("Error: %s", err.Error())

@@ -15,12 +15,12 @@ func (s PostgreSQLConnection) connect(host string, port int, user string, passwo
 	dbinfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, database)
 	db, _ := sql.Open("postgres", dbinfo)
 	if db != nil {
-		err := db.Ping()	
+		err := db.Ping()
 		defer db.Close()
 		if err != nil {
 			log.Printf("Error: %s", err.Error())
 			return false
 		}
-	}	
+	}
 	return true
 }

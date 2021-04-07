@@ -1,9 +1,9 @@
 package main
 
 import (
-	"log"
 	"fmt"
-  
+	"log"
+
 	"github.com/streadway/amqp"
 )
 

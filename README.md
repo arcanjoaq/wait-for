@@ -4,7 +4,7 @@
 
 This is a Docker utility to wait for a database container to be available. Currently the wait-for binary supports **PostgreSQL 11**, **MySQL 8.0.16**, **MongoDB 3.4.19+** databases and **RabbitMQ 3.7+** message broker.
 
-### Installing
+## Installing
 
 Here is an example of wait-for installation in a Dockerfile:
 
@@ -13,12 +13,11 @@ ENV WAIT_FOR_VERSION=v0.0.3
 RUN wget "https://github.com/ArcanjoQueiroz/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for" && chmod u+x wait-for
   ```
 
-
-### Usage
+## Usage
 
 Basically, the option **--type** determines the target resource. Here are some examples of wait-for:
 
-#### MySQL
+### MySQL
 
 ```sh
 ./wait-for --type mysql \
@@ -30,7 +29,7 @@ Basically, the option **--type** determines the target resource. Here are some e
            --maxAttempts 100
 ```
 
-#### PostgreSQL
+### PostgreSQL
 
 ```sh
 ./wait-for --type postgres \
@@ -42,7 +41,7 @@ Basically, the option **--type** determines the target resource. Here are some e
            --maxAttempts 100
 ```
 
-#### MongoDB
+### MongoDB
 
 ```sh
 ./wait-for --type mongodb \
@@ -54,7 +53,7 @@ Basically, the option **--type** determines the target resource. Here are some e
            --maxAttempts 100
 ```
 
-#### RabbitMQ
+### RabbitMQ
 
 ```sh
 ./wait-for --type rabbitmq \
@@ -66,7 +65,7 @@ Basically, the option **--type** determines the target resource. Here are some e
            --maxAttempts 100
 ```
 
-### Options
+## Options
 
 **--type**: Set the resource type. The default value is "postgres".
 
@@ -83,6 +82,12 @@ Basically, the option **--type** determines the target resource. Here are some e
 **--seconds**: Set the amount of seconds to wait for resource. The default value is "10".
 
 **--maxAttempts**: Set the max attempts quantity. The default value is "3".
+
+## Building
+
+```sh
+make build
+```
 
 ## Licensing
 
