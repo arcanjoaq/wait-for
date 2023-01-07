@@ -15,6 +15,9 @@ import (
 type MongoDBConnection struct{}
 
 func (s MongoDBConnection) connect(host string, port int, user string, password string, database string) bool {
+	if port < 0 {
+		port = 27017
+	}
 	connectionInfo := fmt.Sprintf("mongodb://%s:%s@%s:%d/%s?authSource=admin", user, password, host, port, database)
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(connectionInfo))

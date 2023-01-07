@@ -12,6 +12,9 @@ import (
 type MySQLConnection struct{}
 
 func (s MySQLConnection) connect(host string, port int, user string, password string, database string) bool {
+	if port < 0 {
+		port = 3306
+	}
 	dbinfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", user, password, host, port, database)
 	db, _ := sql.Open("mysql", dbinfo)
 	if db != nil {

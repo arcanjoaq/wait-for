@@ -1,4 +1,0 @@
-language: go
-env: GOOS=linux GOARCH=amd64 CGO_ENABLED=0
-go:
- - "1.16.x"

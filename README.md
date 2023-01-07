@@ -1,8 +1,8 @@
 # wait-for
 
-[![Build Status](https://travis-ci.com/arcanjoaq/wait-for.svg?branch=master)](https://travis-ci.com/arcanjoaq/wait-for)
+Wait-for is a binary utility used to wait for a resource (like a database or a message broker) to be available.
 
-This is a Docker utility to wait for a database container to be available. Currently the wait-for binary supports **PostgreSQL 11**, **MySQL 8.0.16**, **MongoDB 3.4.19+** databases and **RabbitMQ 3.7+** message broker.
+Currently the wait-for binary supports **PostgreSQL 11**, **MySQL 8.0.16**, **MongoDB 3.4.19+** databases and **RabbitMQ 3.7+** message broker.
 
 ## Installing
 
@@ -67,19 +67,19 @@ Basically, the option **--type** determines the target resource. Here are some e
 
 ## Options
 
-**--type**: Set the resource type. The default value is "postgres".
+**--type**: Set resource type. The default value is "postgres".
 
-**--host**: Set the target host. The default value is "localhost".
+**--host**: Set target host. The default value is "localhost".
 
-**--port**: Set the resource port. The default value is "5432".
+**--port**: Set resource port. The default value depends on resource type.
 
-**--user**: Set the resource user. The default value is "postgres".
+**--user**: Set resource user. The default value is "postgres".
 
-**--password**: Set the resource password. The default value is "postgres".
+**--password**: Set resource password. The default value is "postgres".
 
-**--name**: Se the resource name. It is the database name or virtual host name. The default value is "postgres".
+**--name**: Se resource name. It is the database name or virtual host name. The default value is "postgres".
 
-**--seconds**: Set the amount of seconds to wait for resource. The default value is "10".
+**--seconds**: Set the amount of seconds to wait for a resource. The default value is "10".
 
 **--maxAttempts**: Set the max attempts quantity. The default value is "3".
 
