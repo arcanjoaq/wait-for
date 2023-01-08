@@ -1,21 +1,19 @@
 # wait-for
 
-Wait-for is a binary utility used to wait for a resource (like a database or a message broker) to be available.
-
-Currently the wait-for binary supports **PostgreSQL 11**, **MySQL 8.0.16**, **MongoDB 3.4.19+** databases and **RabbitMQ 3.7+** message broker.
+_Wait-for_ is a binary used to wait for a resource (like a _database_ or a _message broker_) to be available. It supports _PostgreSQL_, _MySQL_, _MongoDB_ databases and _RabbitMQ_ message broker.
 
 ## Installing
 
-Here is an example of wait-for installation in a Dockerfile:
+Here is an example of _wait-for_ installation in a _Dockerfile_:
 
 ```dockerfile
-ENV WAIT_FOR_VERSION=v0.0.3
-RUN wget "https://github.com/ArcanjoQueiroz/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for" && chmod u+x wait-for
+ENV WAIT_FOR_VERSION=v0.0.4
+RUN wget "https://github.com/arcanjoaq/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for" && chmod u+x wait-for
   ```
 
 ## Usage
 
-Basically, the option **--type** determines the target resource. Here are some examples of wait-for:
+Basically, the option **--type** determines the target resource. Here are some examples of _wait-for_:
 
 ### MySQL
 
@@ -67,21 +65,27 @@ Basically, the option **--type** determines the target resource. Here are some e
 
 ## Options
 
-**--type**: Set resource type. The default value is "postgres".
+**--type**: Set _resource type_.
 
-**--host**: Set target host. The default value is "localhost".
+**--host**: Set _target host_. The default value is "localhost".
 
-**--port**: Set resource port. The default value depends on resource type.
+**--port**: Set _resource port_. The default value depends on resource type.
 
-**--user**: Set resource user. The default value is "postgres".
+**--user**: Set _resource user_.
 
-**--password**: Set resource password. The default value is "postgres".
+**--password**: Set _resource password_.
 
-**--name**: Se resource name. It is the database name or virtual host name. The default value is "postgres".
+**--name**: Se _resource name_. It is _database name_ or _virtual host name_.
 
-**--seconds**: Set the amount of seconds to wait for a resource. The default value is "10".
+**--seconds**: Set _number of seconds_ to wait for a resource. The default value is "10".
 
-**--maxAttempts**: Set the max attempts quantity. The default value is "3".
+**--maxAttempts**: Set _max attempts quantity_. The default value is "3".
+
+## Linting
+
+```sh
+make lint
+```
 
 ## Building
 
